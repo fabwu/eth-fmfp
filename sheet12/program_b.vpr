@@ -1,0 +1,19 @@
+method floor_sqrt(n : Int) returns (z : Int)
+  requires true; // add pre-condition
+  ensures true; // add post-condition
+{
+  var y : Int;
+
+  y := 0;
+  z := 0;
+  while (y*y < n) 
+    invariant true; // add invariant
+  {
+    y := y + 1;
+    if (y*y <= n) {
+      z := z + 1;
+    } else {
+      // skip
+    }
+  }
+}

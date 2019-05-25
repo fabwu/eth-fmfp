@@ -1,0 +1,24 @@
+// since a^b is not built in (write pow(a,b) for a^b)
+function pow(a: Int, b: Int): Int
+  requires b >= 0;
+  requires a > 0;
+{
+  ( b == 0 ? 1 : a * pow(a,b-1) )
+}
+
+method Assignment1(n:Int, k: Int) returns (r:Int)
+  requires k >= 0 && n > 0; // pre-condition
+  ensures r == pow(n,k);   // post-condition
+{
+  var i : Int;
+  
+  i := 0;
+  r := 1;
+
+  while (i < k)
+    invariant 0 <= i && r == pow(n,i) && i <= k; // your invariant should replace "true", here
+  {
+    i := i + 1;
+    r := r * n;
+  }
+}

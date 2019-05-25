@@ -1,0 +1,26 @@
+// since a^b is not built in (write pow(a,b) for a^b)
+function pow(a: Int, b: Int): Int
+  requires b >= 0;
+  requires a > 0;
+{
+  ( b == 0 ? 1 : a * pow(a,b-1) )
+}
+
+method log(n : Int) returns (b : Int)
+  requires true; // add pre-condition
+  ensures true; // add post-condition
+{
+  var a : Int;
+  
+  a := 1;
+  b := 0;
+
+  while (a<n) 
+    invariant true;
+  {
+    a := a * 10;
+    if (a <= n) {
+      b := b + 1;
+    } 
+  }
+}

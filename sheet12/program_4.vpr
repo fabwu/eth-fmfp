@@ -1,0 +1,23 @@
+function pow(a: Int, b: Int): Int
+  requires b >= 0;
+  requires a > 0;
+{
+  ( b == 0 ? 1 : a * pow(a,b-1) )
+}
+
+method PowTwo(X : Int)
+  requires X >= 0;  // pre-condition
+  ensures true;     // post-condition
+{
+  var y : Int := 1;
+  var z : Int := 0;
+
+  while (z < X) 
+    invariant z >= 0 && z <= X && y == pow(2,z); // your invariant should replace "true", here
+  {
+    y := y * 2;
+    z := z + 1;
+  }
+
+  assert y == pow(2, X)
+}
