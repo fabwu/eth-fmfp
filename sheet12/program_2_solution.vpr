@@ -1,0 +1,19 @@
+method ProgramG(X:Int, Y: Int)
+  requires Y > 0;   // pre-condition
+  ensures true;     // post-condition
+{
+  var x : Int := X;
+  var y : Int := Y;
+  var z : Int;
+
+  z := 0;
+
+  while (y <= x)  
+    invariant y >= 0 && X == x + Y*z;
+  {
+    z := z + 1;
+    x := x - y;
+  }
+
+  assert X == x + Y*z && Y > x;
+}

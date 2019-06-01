@@ -1,0 +1,18 @@
+// Note that a / b is precise (real-number) division in Viper; for integer division (slightly surprisingly) one uses the syntax a \ b.
+// This truncates (as integer division does in e.g. C or Java), so that e.g. 3\2 = 1
+
+method sum(x : Int) returns (s : Int)
+  requires x >=0;
+  ensures s == (x+1) * x \ 2;
+{
+  var i : Int;
+
+  i := 0;
+  s := 0;
+  while (i<=x) 
+    invariant s == (i-1) * i \ 2 && i <= (x+1);
+  {
+    s := s + i;
+    i := i + 1;
+  }
+}

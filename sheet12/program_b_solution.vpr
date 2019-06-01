@@ -1,0 +1,19 @@
+method floor_sqrt(n : Int) returns (z : Int)
+  requires n >= 0;
+  ensures z*z <= n && n < (z+1)*(z+1);
+{
+  var y : Int;
+
+  y := 0;
+  z := 0;
+  while (y*y < n) 
+    invariant (y*y <= n ==> z == y) && (y*y > n ==> z == y-1) && 0 <= z && (z*z <= n); 
+  {
+    y := y + 1;
+    if (y*y <= n) {
+      z := z + 1;
+    } else {
+      // skip
+    }
+  }
+}
