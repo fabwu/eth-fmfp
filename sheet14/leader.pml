@@ -4,21 +4,19 @@
 #define L 1 /* length of a channel */
 
 chan c[N] = [L] of { byte };
-int leader = -1;
 
 proctype pnode(chan _in, out; byte id) {   
     byte m;
     out ! id;
 
     do
-    :: leader == -1 -> atomic {
+    :: 
         _in ? m;
         if
-        :: m == id -> leader = m
+        :: m == id -> printf("%d is the leader\n", m);
         :: m > id -> out ! m
+        :: m < id -> skip
         fi
-    }
-    :: else -> break
     od
 }
 
@@ -33,7 +31,4 @@ init {
     }
     :: (id > N) -> break
     od;
-
-    _nr_pr == 1;
-    printf("%d is the leader\n", leader);
 }
