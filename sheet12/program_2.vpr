@@ -9,7 +9,7 @@ method ProgramG(X:Int, Y: Int)
   z := 0;
 
   while (y <= x)  
-    invariant X == x + y * z; // your invariant should replace "true", here
+    invariant X == x + y*z // your invariant should replace "true", here
   {
     z := z + 1;
     x := x - y;

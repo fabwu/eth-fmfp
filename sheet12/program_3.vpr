@@ -9,7 +9,7 @@ method ProgramH(X : Int, Y : Int)
   var y : Int := Y;
 
   while (x < y) 
-    invariant x <= y && (x + y) / 2 == (X + Y) \ 2; // your invariant should replace "true", here
+    invariant x <= y && (x + y) \ 2  == (X + Y) \ 2; // your invariant should replace "true", here
   {
     y := y - 1;
     if (x < y) {
